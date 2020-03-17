@@ -112,3 +112,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) => {
+
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const pOne = document.createElement('p');
+  const pTwo = document.createElement('p');
+  const pThree = document.createElement('p');
+  const btn = document.createElement('span');
+  const btnClose = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(pOne);
+  article.appendChild(pTwo);
+  article.appendChild(pThree);
+  article.appendChild(btn);
+  article.appendChild(btnClose);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  btn.classList.add('expandButton');
+  btnClose.classList.add('close');
+
+  const open = '\u25bc' // unicode triangle
+  btn.textContent = open
+  
+  const close = '\u25b2'
+  btnClose.textContent = close
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraphOne.textContent = pOne;
+  paragraphTwo.textContent = pTwo;
+  paragraphThree.textContent = pThree;
+  btn.textContent = 'Click to Expand';
+  btnClear.textContent = 'Read';
+
+  articleButtons.addEventListener('click', () => {
+    btnOpen.classList.toggle('hide-btn')
+    btnClose.classList.toggle('hide-btn')
+    articleContent.classList.toggle('toggle-on')
+  })
+
+  return articles;
+
+}
+const articles = document.querySelector('.articles');
+
+articleData.forEach(data => {
+  articles.appendChild(createArticle(data.title, data.date, data.paragraphOne, data.paragraphTwo, data.paragraphThree));
+});
