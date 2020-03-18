@@ -85,6 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Lambda Remote Learning Proves adaptable amid Covid-19',
+    date: 'March 17th, 2020',
+    firstParagraph: `This virus is impacting everyone. From instructors, staff, TLs/SLs, and students. We understand that this virus will impact everyone differently - both physically, mentally, and emotionally. There are members of our community who may face financial difficulties due to job loss, needing to care for children and other family members. Additionally, there are members of our community that they or their family members may be immunocompromised. While we cannot provide financial support, we will do everything we can to help support our community academically.`,
+
+    secondParagraph: `There is a lot of conflicting information and opinions out there. One of the most important things throughout this time is to be kind to yourself and others.`,
+
+    thirdParagraph: `- At this time we are on a normal Lambda School schedule, classes will operate as scheduled. In person meetups have been cancelled until further notice (at least for the month of March - see announcement on Tuesday March 11, 2020).`
   }
 ];
 
@@ -113,7 +123,7 @@ const data = [
 
 */
 
-const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) => {
+const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
 
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
@@ -121,7 +131,7 @@ const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) 
   const pOne = document.createElement('p');
   const pTwo = document.createElement('p');
   const pThree = document.createElement('p');
-  const btn = document.createElement('span');
+  const btnOpen = document.createElement('span');
   const btnClose = document.createElement('span');
 
   article.appendChild(articleTitle);
@@ -129,25 +139,25 @@ const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) 
   article.appendChild(pOne);
   article.appendChild(pTwo);
   article.appendChild(pThree);
-  article.appendChild(btn);
+  article.appendChild(btnOpen);
   article.appendChild(btnClose);
 
   article.classList.add('article');
   articleDate.classList.add('date');
-  btn.classList.add('expandButton');
+  btnOpen.classList.add('expandButton');
   btnClose.classList.add('close');
 
-  const open = '\u25bc' // unicode triangle
-  btn.textContent = open
+  // const open = '\u25bc' // unicode triangle
+  // btn.textContent = open
   
-  const close = '\u25b2'
-  btnClose.textContent = close
+  // const close = '\u25b2'
+  // btnClose.textContent = close
 
   articleTitle.textContent = title;
   articleDate.textContent = date;
-  paragraphOne.textContent = pOne;
-  paragraphTwo.textContent = pTwo;
-  paragraphThree.textContent = pThree;
+  firstParagraph.textContent = pOne;
+  secondParagraph.textContent = pTwo;
+  thirdParagraph.textContent = pThree;
   btn.textContent = 'Click to Expand';
   btnClear.textContent = 'Read';
 
@@ -162,6 +172,6 @@ const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) 
 }
 const articles = document.querySelector('.articles');
 
-articleData.forEach(data => {
-  articles.appendChild(createArticle(data.title, data.date, data.paragraphOne, data.paragraphTwo, data.paragraphThree));
+data.forEach(item => {
+  articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondparagraph, item.thirdParagraph));
 });
