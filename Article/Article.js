@@ -123,55 +123,50 @@ const data = [
 
 */
 
-const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+const articles = document.querySelector('.articles');
 
+data.forEach(item => {
+  articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph));
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
   const pOne = document.createElement('p');
   const pTwo = document.createElement('p');
   const pThree = document.createElement('p');
-  const btnOpen = document.createElement('span');
-  const btnClose = document.createElement('span');
+  const btn = document.createElement('span');
+  const btnClear = document.createElement('span');
 
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
   article.appendChild(pOne);
   article.appendChild(pTwo);
   article.appendChild(pThree);
-  article.appendChild(btnOpen);
-  article.appendChild(btnClose);
+  article.appendChild(btn);
+  article.appendChild(btnClear);
 
   article.classList.add('article');
   articleDate.classList.add('date');
-  btnOpen.classList.add('expandButton');
-  btnClose.classList.add('close');
-
-  // const open = '\u25bc' // unicode triangle
-  // btn.textContent = open
-  
-  // const close = '\u25b2'
-  // btnClose.textContent = close
+  btn.classList.add('expandButton');
+  btnClear.classList.add('clear');
 
   articleTitle.textContent = title;
   articleDate.textContent = date;
-  firstParagraph.textContent = pOne;
-  secondParagraph.textContent = pTwo;
-  thirdParagraph.textContent = pThree;
+  pOne.textContent = firstParagraph;
+  pTwo.textContent = secondParagraph;
+  pThree.textContent = thirdParagraph;
   btn.textContent = 'Click to Expand';
-  btnClear.textContent = 'Read';
+  btnClear.textContent = 'Click to Close ';
 
-  articleButtons.addEventListener('click', () => {
-    btnOpen.classList.toggle('hide-btn')
-    btnClose.classList.toggle('hide-btn')
-    articleContent.classList.toggle('toggle-on')
-  })
+  btn.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+   });
 
-  return articles;
+  btnClear.addEventListener('click', () => {
+    article.style.display = 'none';
+  });
 
-}
-const articles = document.querySelector('.articles');
-
-data.forEach(item => {
-  articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondparagraph, item.thirdParagraph));
-});
+  return article;
+};
